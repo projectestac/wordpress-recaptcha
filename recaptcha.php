@@ -402,7 +402,7 @@ JS;
 // XTEC ********** MODIFICAT -> Added WordPressMS to share site_options
 // 2015.06.12 @sarjona
         // At the moment options can be edited only from main blog
-        if ( ($this->environment == Environment::WordPressMU || ( $this->environment == Environment::WordPressMS && get_current_blog_id() === 1) ) &&
+        if ( (is_agora() || $this->environment == Environment::WordPressMU || ( $this->environment == Environment::WordPressMS && get_current_blog_id() === 1) ) &&
             $this->is_authority()) {
             add_options_page('WP-reCAPTCHA', 'WP-reCAPTCHA', 'manage_options',
                  __FILE__, array(&$this, 'show_settings_page'));

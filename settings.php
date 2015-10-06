@@ -16,12 +16,17 @@ if (defined('ALLOW_INCLUDE') === false)
 
 // XTEC ********** AFEGIT -> Update site parameters (to share them in all blogs)
 // 2015.06.12 @sarjona
-    if (isset($_REQUEST['settings-updated'])){
+    if (is_xtecblocs() && isset($_REQUEST['settings-updated'])){
       // Move recaptcha options from current blog (wp_options) to site option (wp_sitemeta)
       update_site_option('recaptcha_options', $this->validate_options(get_option('recaptcha_options')));
       // Remove recaptcha options from current blog (wp_options)
       delete_option('recaptcha_options');
       $this->options = WPPlugin::retrieve_options('recaptcha_options');
+    } else if (is_agora()){
+      global $agora;
+      $this->options = WPPlugin::retrieve_options('recaptcha_options');
+      $this->options['site_key'] = $agora['recaptchapublickey'];
+      $this->options['secret'] = $agora['recaptchaprivatekey'];
     }
 // ********** FI
 ?>
