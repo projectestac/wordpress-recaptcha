@@ -136,10 +136,30 @@ class ReCAPTCHAPlugin extends WPPlugin
                $option_defaults['recaptcha_language'] = $old_options['recaptcha_language'];
                $option_defaults['no_response_error'] = $old_options['no_response_error'];
            } else {           
+// XTEC ********** MODIFICAT -> Changed default keys (for Agora) and default language to Catalan
+// 2015.11.09 @sarjona
+               if (is_agora()) {
+                   global $agora;
+                   if ( isset($agora['recaptchapublickey']) && isset ($agora['recaptchaprivatekey'])) {
+                      $option_defaults['site_key'] = $agora['recaptchapublickey'];
+                      $option_defaults['secret'] = $agora['recaptchaprivatekey'];
+                   }
+                   $option_defaults['comments_theme'] = 'standard';
+                   $option_defaults['recaptcha_language'] = 'ca';
+               } else {
+                   $option_defaults['site_key'] = '';
+                   $option_defaults['secret'] = '';
+                   $option_defaults['comments_theme'] = 'standard';
+                   $option_defaults['recaptcha_language'] = 'en';
+           }
+// *********** ORIGINAL
+/*
                $option_defaults['site_key'] = '';
                $option_defaults['secret'] = '';
                $option_defaults['comments_theme'] = 'standard';
                $option_defaults['recaptcha_language'] = 'en';
+*/
+// *********** FI
                $option_defaults['no_response_error'] =
                    '<strong>ERROR</strong>: Please fill in the reCAPTCHA form.';
            }
@@ -402,7 +422,7 @@ JS;
 // XTEC ********** MODIFICAT -> Added WordPressMS to share site_options
 // 2015.06.12 @sarjona
         // At the moment options can be edited only from main blog
-        if ( (is_agora() || $this->environment == Environment::WordPressMU || ( $this->environment == Environment::WordPressMS && get_current_blog_id() === 1) ) &&
+        if ( (is_xtecadmin() || $this->environment == Environment::WordPressMU || ( $this->environment == Environment::WordPressMS && get_current_blog_id() === 1) ) &&
             $this->is_authority()) {
             add_options_page('WP-reCAPTCHA', 'WP-reCAPTCHA', 'manage_options',
                  __FILE__, array(&$this, 'show_settings_page'));
