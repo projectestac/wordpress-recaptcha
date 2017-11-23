@@ -406,7 +406,18 @@ JS;
            $comment = get_comment($comment_id);
 
            // todo: removed double quote from list of 'dangerous characters'
-           $com = preg_replace('/([\\/\(\)\+\;\'])/e',
+// XTEC ********** MODIFICAT - Use of deprecated PHP4 style class constructor is not supported since PHP 7.
+// 2017.11.23 @nacho
+// *********** ORIGINAL
+/*
+              $com = preg_replace('/([\\/\(\)\+\;\'])/e',
+               '\'%\' . dechex(ord(\'$1\'))',
+               $comment->comment_content);
+               $com = preg_replace('/\\r\\n/m', '\\\n', $com);
+               echo "
+*/
+// *********** FI
+            $com = preg_replace('/([\\/\(\)\+\;\'])',
                '\'%\' . dechex(ord(\'$1\'))',
                $comment->comment_content);
                $com = preg_replace('/\\r\\n/m', '\\\n', $com);

@@ -52,7 +52,14 @@ class ReCaptcha
      *
      * @param string $secret shared secret between site and ReCAPTCHA server.
      */
-    function ReCaptcha($secret)
+// XTEC ********** MODIFICAT - Use of deprecated PHP4 style class constructor is not supported since PHP 7.
+// *********** ORIGINAL
+// 2017.11.23 @nacho
+/*
+	function ReCaptcha($secret)
+*/
+// *********** FI
+    function __construct($secret)
     {
         if ($secret == null || $secret == "") {
             die("To use reCAPTCHA you must get an API key from <a href='"
