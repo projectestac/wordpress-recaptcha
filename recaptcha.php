@@ -417,17 +417,11 @@ JS;
                echo "
 */
 // *********** FI
-            $com = preg_replace('/([\\/\(\)\+\;\'])',
-               '\'%\' . dechex(ord(\'$1\'))',
-               $comment->comment_content);
-               $com = preg_replace('/\\r\\n/m', '\\\n', $com);
-               echo "
-            <script type='text/javascript'>
-            var _recaptcha_wordpress_savedcomment =  '" . $com  ."';
-            _recaptcha_wordpress_savedcomment =
-                unescape(_recaptcha_wordpress_savedcomment);
-            </script>
-            ";
+            $com = preg_replace_callback(
+                '/([\\/\(\)\+\;\'])',
+                function ($m) {
+                    return '\'%\' . dechex(ord(\'$m[1]\'))';
+                }, $comment->comment_content);
 
             wp_delete_comment($comment->comment_ID);
         }
