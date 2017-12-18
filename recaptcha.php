@@ -422,6 +422,14 @@ JS;
                 function ($m) {
                     return '\'%\' . dechex(ord(\'$m[1]\'))';
                 }, $comment->comment_content);
+            $com = preg_replace('/\\r\\n/m', '\\\n', $com);
+               echo "
+                <script type='text/javascript'>
+                var _recaptcha_wordpress_savedcomment =  '" . $com  ."';
+                _recaptcha_wordpress_savedcomment =
+                    unescape(_recaptcha_wordpress_savedcomment);
+                </script>
+                ";
 
             wp_delete_comment($comment->comment_ID);
         }
