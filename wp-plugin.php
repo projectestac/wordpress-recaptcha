@@ -1,3 +1,4 @@
+
 <?php
 
 // just making sure the constant is defined
@@ -93,10 +94,6 @@ if (!class_exists('WPPlugin')) {
 // XTEC ********** MODIFICAT -> Added WordPressMS to share site_options
 // 2012.04.04 @mmartinez
             if (WPPlugin::determine_environment() == Environment::WordPressMU || WPPlugin::determine_environment() == Environment::WordPressMS)
-// *********** ORIGINAL
-/*
-            if (WPPlugin::determine_environment() == Environment::WordPressMU)
-*/
 // *********** FI
                 return get_site_option($options_name);
             else
@@ -107,10 +104,6 @@ if (!class_exists('WPPlugin')) {
 // XTEC ********** MODIFICAT -> Added WordPressMS to share site_options
 // 2012.04.04 @mmartinez
             if (WPPlugin::determine_environment() == Environment::WordPressMU || WPPlugin::determine_environment() == Environment::WordPressMS)
-// *********** ORIGINAL
-/*
-            if (WPPlugin::determine_environment() == Environment::WordPressMU)
-*/
 // *********** FI
                 return delete_site_option($options_name);
             else
@@ -121,10 +114,6 @@ if (!class_exists('WPPlugin')) {
 // XTEC ********** MODIFICAT -> Added WordPressMS to share site_options
 // 2012.04.04 @mmartinez
             if (WPPlugin::determine_environment() == Environment::WordPressMU || WPPlugin::determine_environment() == Environment::WordPressMS)
-// *********** ORIGINAL
-/*
-            if (WPPlugin::determine_environment() == Environment::WordPressMU)
-*/
 // *********** FI
                 return add_site_option($options_name, $options);
             else
