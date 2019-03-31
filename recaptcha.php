@@ -115,11 +115,6 @@ class ReCAPTCHAPlugin extends WPPlugin
                 if ($this->options)
                     return;
         }
-// *********** ORIGINAL
-/*
-        if ($this->options)
-            return;
-*/
 // *********** FI
         $option_defaults = array();
         $old_options = WPPlugin::retrieve_options("recaptcha");
@@ -157,13 +152,6 @@ class ReCAPTCHAPlugin extends WPPlugin
                    $option_defaults['comments_theme'] = 'standard';
                    $option_defaults['recaptcha_language'] = 'en';
            }
-// *********** ORIGINAL
-/*
-               $option_defaults['site_key'] = '';
-               $option_defaults['secret'] = '';
-               $option_defaults['comments_theme'] = 'standard';
-               $option_defaults['recaptcha_language'] = 'en';
-*/
 // *********** FI
                $option_defaults['no_response_error'] =
                    '<strong>ERROR</strong>: Please fill in the reCAPTCHA form.';
@@ -329,10 +317,6 @@ COMMENT_FORM;
 // XTEC ************ MODIFICAT - Avoid warning when debugging
 // 2016.12.28 @sarjona -->
         $escaped_error = htmlentities(isset($_GET['rerror'])?$_GET['rerror']:'', ENT_QUOTES);
-//************ ORIGINAL
-/*
-        $escaped_error = htmlentities($_GET['rerror'], ENT_QUOTES);
-*/
 //************ FI
 
         echo $this->get_recaptcha_html() . $comment_string;
@@ -394,11 +378,6 @@ JS;
 // 2016.11.25 @sarjona
         $comment_id = isset($_REQUEST['rcommentid'])?$_REQUEST['rcommentid']:'';
         $comment_hash = isset($_REQUEST['rchash'])?$_REQUEST['rchash']:'';
-// *********** ORIGINAL
-/*
-        $comment_id = $_REQUEST['rcommentid'];
-        $comment_hash = $_REQUEST['rchash'];
-*/
 // *********** FI
         if (empty($comment_id) || empty($comment_hash))
            return;
@@ -451,20 +430,10 @@ JS;
             add_options_page('WP-reCAPTCHA', 'WP-reCAPTCHA', 'manage_options',
                  __FILE__, array(&$this, 'show_settings_page'));
         }
-// *********** ORIGINAL
-/*
-        if ($this->environment == Environment::WordPressMU &&
-            $this->is_authority())
-            add_submenu_page('wpmu-admin.php', 'WP-reCAPTCHA', 'WP-reCAPTCHA',
-                'manage_options', __FILE__, array(&$this, 'show_settings_page'));
-            add_options_page('WP-reCAPTCHA', 'WP-reCAPTCHA', 'manage_options',
-                 __FILE__, array(&$this, 'show_settings_page'));
-*/
 // *********** FI
         }
-
-    // store the xhtml in a separate file and use include on it
-    function show_settings_page() {
+        // store the xhtml in a separate file and use include on it
+        function show_settings_page() {
         include("settings.php");
     }
 

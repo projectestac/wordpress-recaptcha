@@ -91,21 +91,15 @@ class ReCaptcha
     private function _submitHTTPGet($path, $data)
     {
         $req = $this->_encodeQS($data);
-
-// XTEC ********** MODIFICAT -> Replace file_get_contents function because allow_url_fopen is Off. Without this change, all the comments are sent to spam
-// 2015.06.12 @sarjona
+        // XTEC ********** MODIFICAT -> Replace file_get_contents function because allow_url_fopen is Off. Without this change, all the comments are sent to spam
+        // 2015.06.12 @sarjona
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_URL, $path . $req);
         $response = curl_exec($ch);
         curl_close($ch);
-// ************* ORIGINAL
-/*
-        $response = file_get_contents($path . $req);
-*/
-// ************* FI
-
+        // ************* FI
         return $response;
     }
 

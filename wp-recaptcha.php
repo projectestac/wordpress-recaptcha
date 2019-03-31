@@ -17,9 +17,4 @@ require_once('recaptcha.php');
 //switch_to_blog('1');
 $recaptcha = new ReCAPTCHAPlugin('recaptcha_options');
 //restore_current_blog();
-//************ ORIGINAL
-/*
-$recaptcha = new ReCAPTCHAPlugin('recaptcha_options');
-*/
 //************ FI
-?>
