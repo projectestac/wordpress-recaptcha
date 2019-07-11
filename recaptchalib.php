@@ -141,7 +141,14 @@ class ReCaptcha
         $answers = json_decode($getResponse, true);
         $recaptchaResponse = new ReCaptchaResponse();
 
+        // XTEC ************ MODIFICAT - Fixed array element access
+        // 2019.07.11 @nacho
+        if (trim($answers ['success']) == true) {
+        // ************ ORIGINAL
+        /*
         if (trim($answers [success]) == true) {
+        */
+        // ************ FI
             $recaptchaResponse->success = true;
         } else {
             $recaptchaResponse->success = false;
