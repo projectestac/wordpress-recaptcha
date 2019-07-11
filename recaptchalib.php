@@ -52,7 +52,14 @@ class ReCaptcha
      *
      * @param string $secret shared secret between site and ReCAPTCHA server.
      */
+    // XTEC ************ MODIFICAT - Fixed PHP 4 constructor
+    // 2019.07.11 @nacho
+    function __construct($secret)
+    //************ ORIGINAL
+    /*
     function ReCaptcha($secret)
+    */
+    //************ FI
     {
         if ($secret == null || $secret == "") {
             die("To use reCAPTCHA you must get an API key from <a href='"
