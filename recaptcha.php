@@ -291,7 +291,16 @@ class ReCAPTCHAPlugin extends WPPlugin
         return '<div class="g-recaptcha" data-sitekey="' .
             $this->options['site_key'] .
             '" data-theme="' . $this->options['comments_theme'] .
+
+            // XTEC ************ MODIFICAT - Fixed missing whitespace between HTML attributes
+            // 2021.01.26 @aginard
+            '"></div><script type="text/javascript" ' .
+            //************ ORIGINAL
+            /*
             '"></div><script type="text/javascript"' .
+            */
+            //************ FI
+
             'src="https://www.google.com/recaptcha/api.js?hl=' .
             $this->options['recaptcha_language'] .
             '"></script>';
